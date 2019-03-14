@@ -1,0 +1,7 @@
+.page-footer{
+    background-color: rgb(53, 51, 51);
+}
+
+.text-uppercase, .list-unstyled, .sm, .footer-copyright{
+    color: aliceblue;
+}

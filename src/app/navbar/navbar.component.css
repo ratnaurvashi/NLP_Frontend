@@ -1,0 +1,17 @@
+#logo{
+    margin-top:2px;
+    height:55px; 
+    width:60px;
+}
+#title{
+    /* margin-left:500px; */
+    margin-left: 40%;
+    text-decoration: none;
+    color: aliceblue;
+}
+#title a:hover{
+    text-decoration: none;
+}
+.btn{
+    margin-left: 38%;
+}

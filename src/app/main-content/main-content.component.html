@@ -1,0 +1,28 @@
+<br><br>
+<div class="card text-center">
+  <h3 class="card-header">Questions</h3>
+  <div class="card-block"><br>
+    <h4 class="card-title">{{currentQuestion}}</h4>
+    <br>
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-control" name="input1" [(ngModel)]="input1" placeholder="Write here">
+      </div>
+      <br>
+    </form>
+    <a href="#" class="btn btn-warning" (click)="sendKnowledgeData()">Knowledge</a>&nbsp;
+    <a href="#" class="btn btn-warning" (click)="sendComprehensionData()">Comprehension</a>&nbsp;
+    <a href="#" class="btn btn-warning" (click)="sendApplicationData()">Application</a>&nbsp;
+    <a href="#" class="btn btn-warning" (click)="sendAnalysisData()">Analysis</a>&nbsp;
+    <a href="#" class="btn btn-warning" (click)="sendSynthesisData()">Synthesis</a>&nbsp;
+    <a href="#" class="btn btn-warning" (click)="sendEvaluationData()">Evaluation</a>
+  </div>
+  <br>
+  <div>
+    <!-- <a href="#" class="btn btn-info" style="margin:0 0 0 30;" (click)="getPrevious()">Back</a>&nbsp;&nbsp;&nbsp; -->
+    <a href="#" class="btn btn-info" style="margin:0 0 0 60;" (click)="getNext()">Save & Continue</a>&nbsp;
+  </div>
+  <br>
+</div>
+<br>
+<br>
