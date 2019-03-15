@@ -12,6 +12,7 @@ import { QuestionPublisherService } from '../question-publisher-service';
 export class MainContentComponent implements OnInit {
   i: number = 0;
   intent: string;
+  private finisher:boolean = true;
   private input1:string;
   private questions: QueryQuestions[] = [];
   private currentQuestion: string;
@@ -25,7 +26,9 @@ export class MainContentComponent implements OnInit {
     this.nlpservice.getAllQuestions().subscribe(
       QueryQuestions => {
         this.questions = QueryQuestions;
+        this.currentQuestion = this.questions[0].searchString;
         this.showQuestions(0, this.questions);
+        console.log("In oonn method");
       });
   }
 
@@ -33,6 +36,7 @@ export class MainContentComponent implements OnInit {
     if (queryQuestionsArray == null || queryQuestionsArray.length == 0) {
       this.currentQuestion = "No questions to display";
     } else {
+      console.log("else loop of show question");
       this.currentQuestionObject = queryQuestionsArray[index];
       this.currentQuestion = this.currentQuestionObject.searchString;
     }
@@ -40,52 +44,46 @@ export class MainContentComponent implements OnInit {
 
   getNext(): void {
     if (this.i == this.questions.length - 1) {
-      alert("Questions over!");
+      this.questionPublishService.deleteQuestion(this.questions[this.i].uniqueId);
+      this.currentQuestion = "Done with all the questions!";
+      this.finisher=false;
     }
     else {
       this.i++;
+      console.log("index: "+this.i);
       this.showQuestions(this.i, this.questions);
+      console.log("delete: "+this.questions[this.i-1].uniqueId);
+      this.questionPublishService.deleteQuestion(this.questions[this.i-1].uniqueId);
     }
 
   }
 
-  // getPrevious(): void {
-  //   if (this.i == 0) {
-  //     alert("No questions before this!");
-  //   }
-  //   else {
-  //     this.i--;
-  //     this.showQuestions(this.i, this.questions);
-  //   }
-  // }
-
   sendKnowledgeData(): void {
-    this.intent = "Knowledge";
-    
+    this.questionPublishService.publishQuestion("Knowledge",this.input1,this.currentQuestionObject.uniqueId);
   }
 
   sendComprehensionData(): void {
-    this.intent = "Comprehension";
-    console.log("Intent: " + this.intent);
+    this.questionPublishService.publishQuestion("Comprehension",this.input1,this.currentQuestionObject.uniqueId);
+
   }
 
   sendApplicationData(): void {
-    this.intent = "Application";
-    console.log("Intent: " + this.intent);
+    this.questionPublishService.publishQuestion("Application",this.input1,this.currentQuestionObject.uniqueId);
+
   }
 
   sendAnalysisData(): void {
-    this.intent = "Analysis";
-    console.log("Intent: " + this.intent);
+    this.questionPublishService.publishQuestion("Analysis",this.input1,this.currentQuestionObject.uniqueId);
+
   }
 
   sendSynthesisData(): void {
-    this.intent = "Synthesis";
-    console.log("Intent: " + this.intent);
+    this.questionPublishService.publishQuestion("Synthesis",this.input1,this.currentQuestionObject.uniqueId);
+
   }
 
   sendEvaluationData(): void {
-    this.intent = "Evaluation";
-    console.log("Intent: " + this.intent);
+    this.questionPublishService.publishQuestion("Evaluation",this.input1,this.currentQuestionObject.uniqueId);
+
   }
 }
